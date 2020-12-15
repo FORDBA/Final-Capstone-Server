@@ -1,0 +1,16 @@
+[
+    {
+        "model": "capstoneapi.workflows",
+        "pk": 1,
+        "fields": {
+            "due_date": "2020-08-18",
+            "completion_date": null,
+            "preparer": 1,
+            "reviewer": 2,
+            "processor": 1,
+            "status": 1,
+            "state": 44,
+            "company": 2            
+        }
+    }
+]

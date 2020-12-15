@@ -1,0 +1,367 @@
+[
+    {
+        "model": "capstoneapi.states",
+        "pk": 1,
+        "fields": {
+            "name": "AL"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 2,
+        "fields": {
+            "name": "AK"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 3,
+        "fields": {
+            "name": "AZ"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 4,
+        "fields": {
+            "name": "AR"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 5,
+        "fields": {
+            "name": "CA"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 6,
+        "fields": {
+            "name": "CO"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 7,
+        "fields": {
+            "name": "CT"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 8,
+        "fields": {
+            "name": "DE"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 9,
+        "fields": {
+            "name": "DC"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 10,
+        "fields": {
+            "name": "FED"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 11,
+        "fields": {
+            "name": "FL"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 12,
+        "fields": {
+            "name": "GA"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 13,
+        "fields": {
+            "name": "HI"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 14,
+        "fields": {
+            "name": "ID"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 15,
+        "fields": {
+            "name": "IL"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 16,
+        "fields": {
+            "name": "IN"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 17,
+        "fields": {
+            "name": "IA"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 18,
+        "fields": {
+            "name": "KS"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 19,
+        "fields": {
+            "name": "KY"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 20,
+        "fields": {
+            "name": "LA"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 21,
+        "fields": {
+            "name": "ME"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 22,
+        "fields": {
+            "name": "MD"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 23,
+        "fields": {
+            "name": "MA"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 24,
+        "fields": {
+            "name": "MI"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 25,
+        "fields": {
+            "name": "MN"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 26,
+        "fields": {
+            "name": "MS"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 27,
+        "fields": {
+            "name": "MO"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 28,
+        "fields": {
+            "name": "MT"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 29,
+        "fields": {
+            "name": "NE"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 30,
+        "fields": {
+            "name": "NV"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 31,
+        "fields": {
+            "name": "NH"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 32,
+        "fields": {
+            "name": "NJ"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 33,
+        "fields": {
+            "name": "NM"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 34,
+        "fields": {
+            "name": "NY"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 35,
+        "fields": {
+            "name": "NC"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 36,
+        "fields": {
+            "name": "ND"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 37,
+        "fields": {
+            "name": "OH"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 38,
+        "fields": {
+            "name": "OK"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 39,
+        "fields": {
+            "name": "OR"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 40,
+        "fields": {
+            "name": "PA"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 41,
+        "fields": {
+            "name": "RI"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 42,
+        "fields": {
+            "name": "SC"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 43,
+        "fields": {
+            "name": "SD"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 44,
+        "fields": {
+            "name": "TN"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 45,
+        "fields": {
+            "name": "TX"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 46,
+        "fields": {
+            "name": "UT"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 47,
+        "fields": {
+            "name": "VT"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 48,
+        "fields": {
+            "name": "VA"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 49,
+        "fields": {
+            "name": "WA"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 50,
+        "fields": {
+            "name": "WV"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 51,
+        "fields": {
+            "name": "WI"
+        }
+    },
+    {
+        "model": "capstoneapi.states",
+        "pk": 52,
+        "fields": {
+            "name": "WY"
+        }
+    }
+
+]

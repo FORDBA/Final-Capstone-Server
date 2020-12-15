@@ -1,0 +1,30 @@
+[
+    {
+        "model": "capstoneapi.companies",
+        "pk": 1,
+        "fields": {
+            "name": "Holding Co, Inc."
+        }
+    },
+    {
+        "model": "capstoneapi.companies",
+        "pk": 2,
+        "fields": {
+            "name": "Operating Co, Inc."
+        }
+    },
+    {
+        "model": "capstoneapi.companies",
+        "pk": 3,
+        "fields": {
+            "name": "Logistics Co, Inc."
+        }
+    },
+    {
+        "model": "capstoneapi.companies",
+        "pk": 4,
+        "fields": {
+            "name": "Royalty Co, Inc."
+        }
+    }
+]

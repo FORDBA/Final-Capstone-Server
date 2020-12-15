@@ -1,0 +1,11 @@
+[
+    {
+        "model": "capstoneapi.notes",
+        "pk": 1,
+        "fields": {
+            "workflow": 1,
+            "user": 1,
+            "content": "Don't forget to attatch the CNW schedule to this one."
+        }
+    }
+]

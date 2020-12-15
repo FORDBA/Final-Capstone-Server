@@ -1,0 +1,51 @@
+[
+    {
+        "model": "capstoneapi.statuses",
+        "pk": 1,
+        "fields": {
+            "name": "Not Started"
+        }
+    },
+    {
+        "model": "capstoneapi.statuses",
+        "pk": 2,
+        "fields": {
+            "name": "In Progress"
+        }
+    },
+    {
+        "model": "capstoneapi.statuses",
+        "pk": 3,
+        "fields": {
+            "name": "Prepared"
+        }
+    },
+    {
+        "model": "capstoneapi.statuses",
+        "pk": 4,
+        "fields": {
+            "name": "Review Notes"
+        }
+    },
+    {
+        "model": "capstoneapi.statuses",
+        "pk": 5,
+        "fields": {
+            "name": "Review Notes Cleared"
+        }
+    },
+    {
+        "model": "capstoneapi.statuses",
+        "pk": 6,
+        "fields": {
+            "name": "Ready for Processing"
+        }
+    },
+    {
+        "model": "capstoneapi.statuses",
+        "pk": 7,
+        "fields": {
+            "name": "Completed"
+        }
+    }
+]
