@@ -9,7 +9,7 @@ from django.utils import timezone
 
 @csrf_exempt
 def login_user(request):
-    '''Handles the authentication of a gamer
+    '''Handles the authentication of a user
 
     Method arguments:
       request -- The full HTTP request object
@@ -30,11 +30,10 @@ def login_user(request):
             if authenticated_user.is_active:
                 
                 token = Token.objects.get(user=authenticated_user)
-                workflow_user = User.objects.get(user=authenticated_user)
                 data = json.dumps(
                     {"valid": True, 
                     "token": token.key, 
-                    "user_id": workflow_user.id, 
+                    "user_id": authenticated_user.id, 
                     "is_admin": authenticated_user.is_staff })
                 return HttpResponse(data, content_type='application/json')
 

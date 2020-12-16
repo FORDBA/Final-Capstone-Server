@@ -10,4 +10,5 @@ python manage.py loaddata states
 python manage.py loaddata statuses
 python manage.py loaddata workflows
 python manage.py loaddata notes
+python manage.py loaddata tokens
 
