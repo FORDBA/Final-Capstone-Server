@@ -1,13 +1,14 @@
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
-from capstoneapi.views import register_user, login_user
+from capstoneapi.views import register_user, login_user, WorkflowViewSet
 from django.conf.urls.static import static
 from django.conf import settings
 
 
 """Router"""
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'workflows', WorkflowViewSet, 'workflow')
 
 
 urlpatterns = [
