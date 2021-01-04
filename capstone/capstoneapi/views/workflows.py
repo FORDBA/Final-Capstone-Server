@@ -45,6 +45,41 @@ class WorkflowViewSet(ViewSet):
             return Response(serializer.data, status=djstatus.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=djstatus.HTTP_400_BAD_REQUEST)
+        
+        
+    def update(self, request, pk=None):
+        """ Handle PUT request to comments; only content and subject fields are 
+            editable as currently specified in project requirements
+         """
+        try: 
+            workflow = Workflows.objects.get(pk=pk)
+        except Workflows.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=djstatus.HTTP_404_NOT_FOUND)
+
+       
+        workflow.due_date = request.data["due_date"]
+        workflow.completion_date = request.data["completion_date"]
+        preparer = User.objects.get(pk=request.data["preparer"])
+        workflow.preparer = preparer
+        reviewer = User.objects.get(pk=request.data["reviewer"])
+        workflow.reviewer = reviewer
+        processor = User.objects.get(pk=request.data["processor"])
+        workflow.processor = processor
+        status = Statuses.objects.get(pk=request.data["status"])
+        workflow.status = status
+        state = States.objects.get(pk=request.data["state"])
+        workflow.state = state
+        company = Companies.objects.get(pk=request.data["company"])
+        workflow.company = company
+        
+        
+        
+        
+        try:
+            workflow.save()
+            return Response({}, status=djstatus.HTTP_204_NO_CONTENT)
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=djstatus.HTTP_500_INTERNAL_SERVER_ERROR)
     
     def list(self, request):
         """Handle GET requests to posts resource
@@ -82,9 +117,23 @@ class WorkflowViewSet(ViewSet):
             workflows, many=True, context={'request': request})
         return Response(serializer.data)
 
-        ## in the response body, embed a list of the Ids of all the <Reactions>
-        ## for which its true that a <PostReaction> exists in which the 
-        ## <User> is this request_user and the <Post> is this post
+       
+    
+    def retrieve(self, request, pk=None):
+        """Handle GET requests for single game
+
+        Returns:
+            Response -- JSON serialized game instance
+        """
+        try:
+            # SELECT * FROM levelupapi_gametype WHERE id = ?
+            workflow = Workflows.objects.get(pk=pk)
+
+            serializer = WorkflowSerializer(
+                workflow, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
         
     
 
