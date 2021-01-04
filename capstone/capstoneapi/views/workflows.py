@@ -55,6 +55,10 @@ class WorkflowViewSet(ViewSet):
             workflow = Workflows.objects.get(pk=pk)
         except Workflows.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=djstatus.HTTP_404_NOT_FOUND)
+        
+       
+        if not request.auth.user.is_staff:
+            return Response({"message": "Permission denied"}, status=djstatus.HTTP_401_UNAUTHORIZED)
 
        
         workflow.due_date = request.data["due_date"]
@@ -104,9 +108,9 @@ class WorkflowViewSet(ViewSet):
        
 
         # e.g.: /workflows?company_id=1
-        # company_id = self.request.query_params.get('company_id', None)
-        # if company_id is not None:
-        #     workflows = workflows.filter(company_id=company_id)
+        company_id = self.request.query_params.get('company_id', None)
+        if company_id is not None:
+            workflows = workflows.filter(company_id=company_id)
         
         
         
@@ -117,7 +121,34 @@ class WorkflowViewSet(ViewSet):
             workflows, many=True, context={'request': request})
         return Response(serializer.data)
 
-       
+    
+    def partial_update(self, request, pk=None):
+        """Handle a partial update to a Post resource. Handles PATCH requests
+
+        Currently this will only update the `approved` property"""
+
+        try:
+            workflow = Workflows.objects.get(pk=pk)
+        except Workflows.DoesNotExist:
+            return Response(
+                {'message': 'There is no Workflow with the given id.'},
+                status=djstatus.HTTP_404_NOT_FOUND)
+        
+        #Prevent non-admin users from modifying other user's posts
+        
+
+                
+        workflow.completion_date = request.data["completion_date"]
+        status = Statuses.objects.get(pk=request.data["status"])
+        workflow.status = status
+
+        # Save whatever has been updated in the PATCH request
+        try:
+            workflow.save()
+        except ValidationError as ex:
+            return Response({"reason": ex.message}, status=djstatus.HTTP_400_BAD_REQUEST)
+
+        return Response({}, status=djstatus.HTTP_204_NO_CONTENT)   
     
     def retrieve(self, request, pk=None):
         """Handle GET requests for single game
