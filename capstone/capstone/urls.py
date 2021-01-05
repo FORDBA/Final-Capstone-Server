@@ -1,7 +1,7 @@
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
-from capstoneapi.views import register_user, login_user, WorkflowViewSet, UserViewSet, CompanyViewSet
+from capstoneapi.views import register_user, login_user, WorkflowViewSet, UserViewSet, CompanyViewSet, StateViewSet, StatusViewSet
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -11,6 +11,9 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'workflows', WorkflowViewSet, 'workflow')
 router.register(r'users', UserViewSet, 'user')
 router.register(r'companies', CompanyViewSet, 'company')
+router.register(r'states', StateViewSet, 'state')
+router.register(r'statuses', StatusViewSet, 'status')
+
 
 
 urlpatterns = [

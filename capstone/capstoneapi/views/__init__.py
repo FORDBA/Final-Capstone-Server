@@ -3,3 +3,5 @@ from .auth import register_user
 from .workflows import WorkflowViewSet
 from .users import UserViewSet
 from .companies import CompanyViewSet
+from .states import StateViewSet
+from .statuses import StatusViewSet

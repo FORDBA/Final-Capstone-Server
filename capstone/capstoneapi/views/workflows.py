@@ -20,7 +20,8 @@ class WorkflowViewSet(ViewSet):
         Returns:
             Response -- JSON serialized comments instance
         """
-        
+        if not request.auth.user.is_staff:
+            return Response({"message": "Permission denied"}, status=djstatus.HTTP_401_UNAUTHORIZED)
     
         workflows = Workflows()
         workflows.due_date = request.data["due_date"]
@@ -138,9 +139,14 @@ class WorkflowViewSet(ViewSet):
         
 
                 
-        workflow.completion_date = request.data["completion_date"]
+        
         status = Statuses.objects.get(pk=request.data["status"])
         workflow.status = status
+        
+        if request.data['status'] == 7:
+            workflow.completion_date = date.today()
+        else:
+            workflow.completion_date = None
 
         # Save whatever has been updated in the PATCH request
         try:
@@ -212,7 +218,7 @@ class WorkflowSerializer(serializers.ModelSerializer):
     processor = ProcessorSerializer(many=False)    
     state = StateSerializer(many=False)
     status = StatusSerializer(many=False)
-    company = StateSerializer(many=False)
+    company = CompanySerializer(many=False)
 
     class Meta:
         model = Workflows
