@@ -25,7 +25,6 @@ class WorkflowViewSet(ViewSet):
     
         workflows = Workflows()
         workflows.due_date = request.data["due_date"]
-        workflows.completion_date = request.data["completion_date"]
         preparer = User.objects.get(pk=request.data["preparer"])
         workflows.preparer = preparer
         reviewer = User.objects.get(pk=request.data["reviewer"])
@@ -38,7 +37,10 @@ class WorkflowViewSet(ViewSet):
         workflows.state = state
         company = Companies.objects.get(pk=request.data["company"])
         workflows.company = company
-        
+        if status.id == 7:
+            workflows.completion_date = date.today()
+        else:
+            workflows.completion_date = None
         
         try:
             workflows.save()
@@ -62,8 +64,8 @@ class WorkflowViewSet(ViewSet):
             return Response({"message": "Permission denied"}, status=djstatus.HTTP_401_UNAUTHORIZED)
 
        
+        
         workflow.due_date = request.data["due_date"]
-        workflow.completion_date = request.data["completion_date"]
         preparer = User.objects.get(pk=request.data["preparer"])
         workflow.preparer = preparer
         reviewer = User.objects.get(pk=request.data["reviewer"])
@@ -76,6 +78,10 @@ class WorkflowViewSet(ViewSet):
         workflow.state = state
         company = Companies.objects.get(pk=request.data["company"])
         workflow.company = company
+        if status.id == 7:
+            workflow.completion_date = date.today()
+        else:
+            workflow.completion_date = None
         
         
         
@@ -143,7 +149,7 @@ class WorkflowViewSet(ViewSet):
         status = Statuses.objects.get(pk=request.data["status"])
         workflow.status = status
         
-        if request.data['status'] == 7:
+        if request.data['status'] == '7':
             workflow.completion_date = date.today()
         else:
             workflow.completion_date = None
@@ -171,6 +177,23 @@ class WorkflowViewSet(ViewSet):
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
+    def destroy(self, request, pk=None):
+        
+        try:
+            workflow = Workflows.objects.get(pk=pk)
+
+            #Prevent non-admin users from deleting posts from other users
+            
+            if request.auth.user.is_staff:
+                workflow.delete()
+                return Response({}, status=djstatus.HTTP_204_NO_CONTENT)
+            else:
+                return Response({"message": "Permission denied"}, status=djstatus.HTTP_401_UNAUTHORIZED)
+                
+        except Workflows.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=djstatus.HTTP_404_NOT_FOUND)
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=djstatus.HTTP_500_INTERNAL_SERVER_ERROR)
         
     
 
