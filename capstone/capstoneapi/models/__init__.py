@@ -3,3 +3,4 @@ from .Notes import Notes
 from .States import States
 from .Statuses import Statuses
 from .Workflows import Workflows
+from .WorkflowUsers import WorkflowUsers 

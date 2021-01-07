@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
-from capstoneapi.models import Notes, Workflows
+from capstoneapi.models import Notes, Workflows, WorkflowUsers
 from rest_framework import serializers
 from django.http.response import HttpResponseServerError
 from rest_framework import status as djstatus
@@ -16,11 +16,11 @@ class NoteViewSet(ViewSet):
         Returns:
             Response -- JSON serialized comments instance
         """
-        author = User.objects.get(pk=request.data["author"])
-        author_id = author.id
+        author = WorkflowUsers.objects.get(user=request.auth.user)
+        
         notes = Notes()
         notes.content = request.data["content"]
-        notes.author_id = author_id
+        notes.author = author
         workflows = Workflows.objects.get(pk=request.data["workflow"])
         notes.workflow = workflows
         
@@ -53,15 +53,15 @@ class NoteViewSet(ViewSet):
         except Notes.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=djstatus.HTTP_404_NOT_FOUND)
 
-        workflow_user = User.objects.get(user=request.auth.user)
-        if note.user != workflow_user:
+        workflow_user = WorkflowUsers.objects.get(user=request.auth.user)
+        if note.author != workflow_user:
             return Response(
                 {'message': 'Notes cannot be updated by users who did not author them.'},
                 status=djstatus.HTTP_403_FORBIDDEN
             )
 
         note.content = request.data["content"]
-        note.subject = request.data["subject"]
+       
         try:
             note.save()
             return Response({}, status=djstatus.HTTP_204_NO_CONTENT)
@@ -74,8 +74,8 @@ class NoteViewSet(ViewSet):
         except Notes.DoesNotExist as ex:
             return Response({'message': ex.args[0]})
 
-        workflow_user = User.objects.get(request.auth.user)
-        if (note.user != workflow_user):
+        workflow_user = WorkflowUsers.objects.get(user=request.auth.user)
+        if note.author != workflow_user:
             return Response(
                 {'message': 'Comments can only be deleted by the users who authored them.'},
                 status=djstatus.HTTP_403_FORBIDDEN
@@ -91,16 +91,16 @@ class NoteViewSet(ViewSet):
 
 
 
-class UsersSerializer(serializers.ModelSerializer):
+class WorkflowUsersSerializer(serializers.ModelSerializer):
     """JSON serializer for Users"""
 
     class Meta:
-        model = User
-        fields = ['id', 'first_name', 'last_name']
+        model = WorkflowUsers
+        fields = ['id', 'fullname']
 
 class NoteSerializer(serializers.ModelSerializer):
     """JSON serializer for note creator"""
-    author = UsersSerializer(many=True)
+    author = WorkflowUsersSerializer()
     
     class Meta:
         model = Notes
